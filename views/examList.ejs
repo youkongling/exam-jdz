@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>景德镇农商考试系统</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/bower_components/amazeui/dist/css/amazeui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <style>
+    .am-header-white {
+        background-color: rgba(42, 51, 110, 1);
+    }
+
+    .am-header-white .am-header-title,
+    .am-header-white .am-header-left a i {
+        color: #FFF;
+    }
+
+    .xb-scorelist .am-btn-success {
+        background-color: rgba(42, 51, 110, 1);
+        border-color: rgba(42, 51, 110, 1);
+    }
+    </style>
+    <header data-am-widget="header" class="am-header am-header-white">
+        <div class="am-header-left am-header-nav">
+            <a href="/" class="">
+                <i class="am-icon-angle-left am-fr am-icon-lg"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title"><%= data.title %></h1>
+        <div class="am-header-right am-header-nav">
+            <!-- <a href="#right-link" class=""></a> -->
+        </div>
+    </header>
+    <style>
+
+    </style>
+    <div class="am-g xb-section">
+        <span class="am-u-sm-8" id="testTitle">单选题</span>
+        <span class="am-u-sm-4 am-text-right" id="question_num"><strong>1</strong>/<%= data.total %></span>
+    </div>
+    <div class="am-g xb-question">
+        <form action="/examList/<%= data.examid %>" class="am-u-sm-12 xb-100h" id="question_form" method="post">
+            <div class="swiper-container swiper-container-horizontal xb-100h">
+                <div class="swiper-wrapper">
+                    <% if(data.question[0]){ %>
+                        <% for(var i=0; i<data.question[0].radio.length ; i++){ %>
+                            <div class="swiper-slide" data-hash="<%= i + 1 %>">
+                                <div class="xb-question-text">
+                                    <%= data.question[0].radio[i].question %>
+                                        <strong><%= data.question[0].radio[i].questiontype %></strong>
+                                </div>
+                                <div class="xb-question-choice" data-choose="false">
+                                    <% if(data.question[0].radio[i].queschoiceA){ %>
+                                        <div class="am-g xb-question-15b">
+                                            <input type="checkbox" style="display: none;" value="" checked name="<%= data.question[0].radio[i].questionid %>">
+                                            <label>
+                                                <div class="am-u-sm-1 xb-radio">
+                                                    <input class="" type="radio" name="<%= data.question[0].radio[i].questionid %>" value="A">
+                                                    <span>A</span>
+                                                </div>
+                                                <div class="am-u-sm-11">
+                                                    <%= data.question[0].radio[i].queschoiceA %>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <% } %>
+                                            <% if(data.question[0].radio[i].queschoiceB){ %>
+                                                <div class="am-g xb-question-15b">
+                                                    <label>
+                                                        <div class="am-u-sm-1 xb-radio">
+                                                            <input class="" type="radio" name="<%= data.question[0].radio[i].questionid %>" value="B">
+                                                            <span>B</span>
+                                                        </div>
+                                                        <div class="am-u-sm-11">
+                                                            <%= data.question[0].radio[i].queschoiceB %>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <% } %>
+                                                    <% if(data.question[0].radio[i].queschoiceC){ %>
+                                                        <div class="am-g xb-question-15b">
+                                                            <label>
+                                                                <div class="am-u-sm-1 xb-radio">
+                                                                    <input class="" type="radio" name="<%= data.question[0].radio[i].questionid %>" value="C">
+                                                                    <span>C</span>
+                                                                </div>
+                                                                <div class="am-u-sm-11">
+                                                                    <%= data.question[0].radio[i].queschoiceC %>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <% } %>
+                                                            <% if(data.question[0].radio[i].queschoiceD){ %>
+                                                                <div class="am-g xb-question-15b">
+                                                                    <label>
+                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                            <input class="" type="radio" name="<%= data.question[0].radio[i].questionid %>" value="D">
+                                                                            <span>D</span>
+                                                                        </div>
+                                                                        <div class="am-u-sm-11">
+                                                                            <%= data.question[0].radio[i].queschoiceD %>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <% } %>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% if(data.question[2]){ %>
+                                        <% for(var i=0; i<data.question[2].judge.length ; i++){ %>
+                                            <div class="swiper-slide" data-hash="<%= data.question[0].radio.length + i + 1 %>">
+                                                <div class="xb-question-text">
+                                                    <%= data.question[2].judge[i].question %>
+                                                        <strong><%= data.question[2].judge[i].questiontype %></strong>
+                                                </div>
+                                                <div class="xb-question-choice" data-choose="false">
+                                                    <% if(data.question[2].judge[i].queschoiceA){ %>
+                                                        <div class="am-g xb-question-15b">
+                                                            <input type="checkbox" style="display: none;" value="" checked name="<%= data.question[2].judge[i].questionid %>">
+                                                            <label>
+                                                                <div class="am-u-sm-1 xb-radio">
+                                                                    <input class="" type="radio" name="<%= data.question[2].judge[i].questionid %>" value="A">
+                                                                    <span>A</span>
+                                                                </div>
+                                                                <div class="am-u-sm-11">
+                                                                    <%= data.question[2].judge[i].queschoiceA %>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <% } %>
+                                                            <% if(data.question[2].judge[i].queschoiceB){ %>
+                                                                <div class="am-g xb-question-15b">
+                                                                    <label>
+                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                            <input class="" type="radio" name="<%= data.question[2].judge[i].questionid %>" value="B">
+                                                                            <span>B</span>
+                                                                        </div>
+                                                                        <div class="am-u-sm-11">
+                                                                            <%= data.question[2].judge[i].queschoiceB %>
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+                                                                <% } %>
+                                                                    <% if(data.question[2].judge[i].queschoiceC){ %>
+                                                                        <div class="am-g xb-question-15b">
+                                                                            <label>
+                                                                                <div class="am-u-sm-1 xb-radio">
+                                                                                    <input class="" type="radio" name="<%= data.question[2].judge[i].questionid %>" value="C">
+                                                                                    <span>C</span>
+                                                                                </div>
+                                                                                <div class="am-u-sm-11">
+                                                                                    <%= data.question[2].judge[i].queschoiceC %>
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                        <% } %>
+                                                                            <% if(data.question[2].judge[i].queschoiceD){ %>
+                                                                                <div class="am-g xb-question-15b">
+                                                                                    <label>
+                                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                                            <input class="" type="radio" name="<%= data.question[2].judge[i].questionid %>" value="D">
+                                                                                            <span>D</span>
+                                                                                        </div>
+                                                                                        <div class="am-u-sm-11">
+                                                                                            <%= data.question[2].judge[i].queschoiceD %>
+                                                                                        </div>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <% } %>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+                                                    <% if(data.question[1]){ %>
+                                                        <% for(var j=0; j<data.question[1].multiple.length ;j++){ %>
+                                                            <div class="swiper-slide" data-hash="<%= data.question[0].radio.length + (data.question[2] ? data.question[2].judge.length : 0) + j + 1 %>">
+                                                                <div class="xb-question-text">
+                                                                    <%= data.question[1].multiple[j].question %><strong><%= data.question[1].multiple[j].questiontype %></strong></div>
+                                                                <div class="xb-question-choice" data-choose="false">
+                                                                    <% if(data.question[1].multiple[j].queschoiceA){ %>
+                                                                        <div class="am-g xb-question-15b">
+                                                                            <input type="checkbox" value="" style="display: none;" checked name="<%= data.question[1].multiple[j].questionid %>">
+                                                                            <label>
+                                                                                <div class="am-u-sm-1 xb-radio">
+                                                                                    <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="A">
+                                                                                    <span data-click="false">A</span>
+                                                                                </div>
+                                                                                <div class="am-u-sm-11">
+                                                                                    <%= data.question[1].multiple[j].queschoiceA %>
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                        <% } %>
+                                                                            <% if(data.question[1].multiple[j].queschoiceB){ %>
+                                                                                <div class="am-g xb-question-15b">
+                                                                                    <label>
+                                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                                            <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="B">
+                                                                                            <span data-click="false">B</span>
+                                                                                        </div>
+                                                                                        <div class="am-u-sm-11">
+                                                                                            <%= data.question[1].multiple[j].queschoiceB %>
+                                                                                        </div>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <% } %>
+                                                                                    <% if(data.question[1].multiple[j].queschoiceC){ %>
+                                                                                        <div class="am-g xb-question-15b">
+                                                                                            <label>
+                                                                                                <div class="am-u-sm-1 xb-radio">
+                                                                                                    <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="C">
+                                                                                                    <span data-click="false">C</span>
+                                                                                                </div>
+                                                                                                <div class="am-u-sm-11">
+                                                                                                    <%= data.question[1].multiple[j].queschoiceC %>
+                                                                                                </div>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <% } %>
+                                                                                            <% if(data.question[1].multiple[j].queschoiceD){ %>
+                                                                                                <div class="am-g xb-question-15b">
+                                                                                                    <label>
+                                                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                                                            <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="D">
+                                                                                                            <span data-click="false">D</span>
+                                                                                                        </div>
+                                                                                                        <div class="am-u-sm-11">
+                                                                                                            <%= data.question[1].multiple[j].queschoiceD %>
+                                                                                                        </div>
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                                <% } %>
+                                                                                                    <% if(data.question[1].multiple[j].queschoiceE){ %>
+                                                                                                        <div class="am-g xb-question-15b">
+                                                                                                            <label>
+                                                                                                                <div class="am-u-sm-1 xb-radio">
+                                                                                                                    <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="E">
+                                                                                                                    <span data-click="false">E</span>
+                                                                                                                </div>
+                                                                                                                <div class="am-u-sm-11">
+                                                                                                                    <%= data.question[1].multiple[j].queschoiceE %>
+                                                                                                                </div>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <% } %>
+                                                                                                            <% if(data.question[1].multiple[j].queschoiceF){ %>
+                                                                                                                <div class="am-g xb-question-15b">
+                                                                                                                    <label>
+                                                                                                                        <div class="am-u-sm-1 xb-radio">
+                                                                                                                            <input class="" type="checkbox" name="<%= data.question[1].multiple[j].questionid %>" value="F">
+                                                                                                                            <span data-click="false">F</span>
+                                                                                                                        </div>
+                                                                                                                        <div class="am-u-sm-11">
+                                                                                                                            <%= data.question[1].multiple[j].queschoiceF %>
+                                                                                                                        </div>
+                                                                                                                    </label>
+                                                                                                                </div>
+                                                                                                                <% } %>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+                                                                <% } %>
+                </div>
+                <div class="swiper-pagination swiper-pagination-progress"></div>
+            </div>
+        </form>
+    </div>
+    <div class="xb-bottom am-g">
+        <div class="xb-tab am-u-sm-4" id="btn-modal-span">
+            <span class="xb-tab-icon"><i class="am-icon-leanpub am-icon-sm am-icon-fw"></i></span>
+            <span class="xb-tab-span">答题卡</span>
+        </div>
+        <div class="xb-tab am-u-sm-4" id="question_submit">
+            <span class="xb-tab-icon"><i class="am-icon-calendar-minus-o am-icon-sm am-icon-fw"></i></span>
+            <span class="xb-tab-span">交卷</span>
+            <button type="submit" form="question_form" style="display: none;">交卷</button>
+        </div>
+        <div class="xb-tab am-u-sm-4">
+            <span class="xb-tab-icon"><i class="am-icon-clock-o am-icon-sm am-icon-fw"></i></span>
+            <span class="xb-tab-span"><strong id="testTime"><clock><%= data.time %></clock> : <clock>00</clock></strong></span>
+        </div>
+        <script type="text/javascript">
+        var testTime = document.querySelectorAll("#testTime > clock");
+        var hour = parseInt(testTime[0].innerHTML);
+        var minute = parseInt(testTime[1].innerHTML);
+        var timer = window.setInterval(function() {
+            if (minute > 0) {
+                if (minute >= 10) {
+                    testTime[1].innerHTML = --minute;
+                } else {
+                    testTime[1].innerHTML = '0' + --minute;
+                }
+            } else {
+                if (hour > 0) {
+                    if (hour > 10) {
+                        testTime[0].innerHTML = --hour;
+                        minute = 59;
+                        testTime[1].innerHTML = minute;
+                    } else {
+                        testTime[0].innerHTML = '0' + --hour;
+                        minute = 59;
+                        testTime[1].innerHTML = minute;
+                    }
+                } else {
+                    var formBtn = document.querySelector('#question_submit > button');
+                    formBtn.click();
+                }
+            }
+        }, 1000);
+        </script>
+    </div>
+    <!-- modal -->
+    <style>
+    .xb-modal .am-modal-hd {
+        background-color: rgba(42, 51, 110, 1);
+        padding-top: 5px;
+        color: #FFF;
+        margin-bottom: 15px;
+    }
+
+    .xb-modal .am-modal-hd a {
+        color: #FFF;
+        opacity: 0.6;
+    }
+    </style>
+    <div class="am-modal am-modal-no-btn xb-modal" tabindex="-1" id="doc-modal-1">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">答题卡
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <div class="am-g">
+                    <% for(var i=0; i<data.total; i++){ %>
+                        <div class="am-u-sm-2 am-u-end">
+                            <a href="#<%= i+1 %>">
+                                <%= i+1 %>
+                            </a>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/amazeui/dist/js/amazeui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    <script>
+    $(function() {
+        $('#btn-modal-span').on('click', function() {
+            $('#doc-modal-1').modal('open');
+        })
+    })
+    var questions = document.querySelectorAll(".xb-question-choice");
+    var question_num = document.querySelector("#question_num > strong");
+    var hash = window.location.hash;
+    var num = hash.split('#');
+    question_num.innerHTML = num[1] ? num[1] : 1;
+    var btn_close = document.querySelector(".xb-modal .am-close-spin");
+    var answer_btns = document.querySelectorAll('.xb-modal .am-modal-bd a');
+    for (var i = 0; i < answer_btns.length; i++) {
+        (function(i) {
+            answer_btns[i].addEventListener("touchstart", function(e) {
+                btn_close.click();
+            });
+        })(i);
+    }
+    for (var i = 0; i < questions.length; i++) {
+        (function(i) {
+            var radios = questions[i].querySelectorAll("input[type='radio']");
+            for (var j = 0; j < radios.length; j++) {
+                (function(j) {
+                    radios[j].addEventListener("change", function(e) {
+                        for (var k = 0; k < radios.length; k++) {
+                            var otherParent = radios[k].parentNode;
+                            var otherChoice = otherParent.querySelector("span");
+                            otherChoice.classList.remove('span-choice');
+                        }
+                        var parent = this.parentNode;
+                        var choice = parent.querySelector("span");
+                        choice.classList.add('span-choice');
+                        var grandParent = parent.parentNode.parentNode.parentNode;
+                        grandParent.setAttribute("data-choose", "true");
+                        // 关联答题卡
+                        for (var x = 0; x < answer_btns.length; x++) {
+                            (function(x) {
+                                var choose = questions[x].dataset.choose;
+                                if (choose == "true") {
+                                    answer_btns[x].classList.add("xb-active");
+                                } else {
+                                    answer_btns[x].classList.remove("xb-active");
+                                }
+                            })(x);
+                        }
+                    })
+                })(j);
+            }
+
+            var checkboxs = questions[i].querySelectorAll("input[type='checkbox']");
+            for (var j = 0; j < checkboxs.length; j++) {
+                (function(j) {
+                    checkboxs[j].addEventListener("change", function(e) {
+                        var parent = this.parentNode;
+                        var choice = parent.querySelector("span");
+                        // console.log(choice)
+                        if (choice.dataset.click == "false") {
+                            choice.classList.add('span-choice');
+                            choice.dataset.click = "true";
+                        } else {
+                            choice.classList.remove('span-choice');
+                            choice.dataset.click = "false";
+                        }
+                        var grandParent = parent.parentNode.parentNode.parentNode;
+                        var spanClicked = grandParent.querySelectorAll(".xb-radio span");
+                        if (spanClicked[0].dataset.click == "true" || spanClicked[1].dataset.click == "true" || spanClicked[2].dataset.click == "true" || spanClicked[3].dataset.click == "true") {
+                            grandParent.setAttribute("data-choose", "true");
+                        } else {
+                            grandParent.setAttribute("data-choose", "false");
+                        }
+                        // 关联答题卡
+                        for (var x = 0; x < answer_btns.length; x++) {
+                            (function(x) {
+                                var choose = questions[x].dataset.choose;
+                                if (choose == "true") {
+                                    answer_btns[x].classList.add("xb-active");
+                                } else {
+                                    answer_btns[x].classList.remove("xb-active");
+                                }
+                            })(x);
+                        }
+                    })
+                })(j);
+            }
+        })(i);
+    }
+    var swiper = new Swiper('.swiper-container', {
+        initialSlide: 0,
+        hashnav: true,
+        hashnavWatchState: true,
+        pagination: '.swiper-pagination',
+        paginationType: 'progress'
+    });
+    window.addEventListener("hashchange", function(e) {
+        hash = this.location.hash;
+        num = hash.split('#');
+        question_num.innerHTML = num[1];
+        var slides = document.querySelectorAll('.swiper-slide > .xb-question-text > strong');
+        var testTitle = document.querySelector('#testTitle');
+        testTitle.innerHTML = slides[num[1] - 1].innerHTML;
+    })
+    var submit_form = document.querySelector("#question_submit");
+    submit_form.addEventListener("touchstart", function(e) {
+        var submit_btn = this.querySelector("button");
+        submit_btn.click();
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> 景德镇农商考试系统 </title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/bower_components/amazeui/dist/css/amazeui.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <style>
+    .am-header-white {
+        background-color: rgba(42, 51, 110, 1);
+    }
+
+    .am-header-white .am-header-title,
+    .am-header-white .am-header-left a i {
+        color: #FFF;
+    }
+
+    .xb-scorelist .am-btn-success {
+        background-color: rgba(42, 51, 110, 1);
+    }
+    </style>
+    <header data-am-widget="header" class="am-header am-header-white">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:window.history.back();" class="">
+                <i class="am-icon-angle-left am-fr am-icon-lg"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">考试排名</h1>
+        <div class="am-header-right am-header-nav">
+            <a href="#right-link" class=""></a>
+        </div>
+    </header>
+    <style type="text/css">
+    .xb-scorelist .item-sql {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        line-height: 26px;
+        border-radius: 50%;
+        color: #000;
+        /*background-color: #317A1F;*/
+        /*border: 1px solid #317A1F;*/
+    }
+
+    .xb-scorelist .item-name {
+        display: inline-block;
+        font-size: 18px;
+    }
+
+    .xb-scorelist .item-score {
+        display: inline-block;
+        font-size: 18px;
+        float: right;
+        line-height: 32px;
+    }
+    </style>
+    <div class="am-g xb-scorelist">
+        <div class="am-u-sm-12">
+            <h2 class="am-text-center" style="padding-top: 10px;">
+                <% for(var i=0 ; i < data.length ; i++ ){ %>
+                <% if(data[i].status == 1){ %>
+                    <div class="item-sql"><%= i+1 %></div>
+                    <div class="item-name"><%= data[i].username %></div>
+                    <div class="item-score" style="float: none;"><b><%= data[i].score %></b>分</div>
+                <% } %>
+                <% } %>
+            </h2>
+        </div>
+        <div class="am-u-sm-12">
+            <ul class="am-list am-list-static am-list-border">
+                <% for(var i=0 ; i < data.length ; i++){ %>
+                <li style="padding: 0.2em 0.2em;">
+                    <div class="am-g">
+                        <div class="am-u-sm-8 am-u-sm-offset-2">
+                            <div class="item-sql"><%= i+1 %></div>
+                            <div class="item-name"><%= data[i].username %></div>
+                            <div class="item-score"><b><%= data[i].score %></b>分</div>
+                        </div>
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <style>
+    .xb-bottom .xb-bottom-img {
+        position: absolute;
+        left: 50%;
+        margin-left: -20%;
+        width: 40%;
+        bottom: 10px;
+    }
+
+    .xb-bottom .xb-bottom-img img {
+        width: 100%;
+    }
+    </style>
+    <div class="xb-bottom am-g">
+        <div class="am-u-sm-12">
+            <div class="xb-bottom-img">
+                <!-- <img src="/images/font.jpg" alt=""> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="xb-bottom am-g">
+        <div class="xb-tab am-u-sm-6">
+            <a href="/">
+                <span class="xb-tab-icon"><i class="am-icon-wpforms am-icon-sm am-icon-fw"></i></span>
+                <span class="xb-tab-span">考试</span>
+            </a>
+        </div>
+        <div class="xb-tab am-u-sm-6">
+            <a href="javascript:window.history.back();">
+                <span class="xb-tab-icon"><i class="am-icon-user am-icon-sm am-icon-fw"></i></span>
+                <span class="xb-tab-span">个人中心</span>
+            </a>
+        </div>
+    </div> -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/amazeui/dist/js/amazeui.min.js"></script>
+</body>
+
+</html>

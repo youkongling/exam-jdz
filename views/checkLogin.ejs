@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>景德镇农商考试系统</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/bower_components/amazeui/dist/css/amazeui.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <style>
+    .xb-login {
+        padding: 10px 10px;
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    .xb-login h2 {
+        margin-top: 180px;
+        color: rgba(42, 51, 110, 1);
+        font-size: 24px;
+    }
+
+    .xb-form .am-btn {
+        background-color: rgba(42, 51, 110, 1);
+        border-radius: 3px;
+        color: #FFF;
+    }
+    </style>
+    <div class="am-g xb-100h xb-login">
+        <div class="am-u-sm-8 am-u-sm-offset-2 am-u-end">
+            <h2 class="am-text-center">欢迎使用景德镇农商在线考试系统</h2>
+        </div>
+        <div class="am-u-sm-8 am-u-sm-offset-2 am-u-end">
+            <form class="xb-form am-text-center" action="/confirm" method="post">
+                <input type="hidden" id="openid" name="openid" value="">
+                <button type="submit" class="am-btn am-btn-default">进入系统</button>
+            </form>
+        </div>
+    </div>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/amazeui/dist/js/amazeui.min.js"></script>
+    <script type="text/javascript">
+    (function() {
+        var openid = document.querySelector("#openid");
+        var storage = window.localStorage;
+
+        function guid() {
+            function S4() {
+                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+            }
+            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+        }
+
+        if (!storage.openid) {
+            storage.setItem('openid', guid());
+        }
+        openid.value = storage.openid;
+    })();
+    </script>
+</body>
+
+</html>

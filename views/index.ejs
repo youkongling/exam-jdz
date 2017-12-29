@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> 景德镇农商考试系统 </title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="/bower_components/amazeui/dist/css/amazeui.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <style>
+    .am-header-white {
+        background-color: rgba(42, 51, 110, 1);
+    }
+
+    .am-header-white .am-header-title,
+    .am-header-white .am-header-left a i {
+        color: #FFF;
+    }
+
+    .xb-scorelist .am-btn-success {
+        background-color: rgba(42, 51, 110, 1);
+        border-color: rgba(42, 51, 110, 1);
+    }
+    </style>
+    <header data-am-widget="header" class="am-header am-header-white">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:window.history.back();" class="">
+                <i class="am-icon-angle-left am-fr am-icon-lg"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">考试中心</h1>
+        <div class="am-header-right am-header-nav">
+            <!-- <a href="#right-link" class=""></a> -->
+        </div>
+    </header>
+    <style type="text/css">
+    .am-list-border>li>a:focus,
+    .am-list-border>li>a:hover,
+    .am-list-bordered>li>a:focus,
+    .am-list-bordered>li>a:hover{
+        background-color: #317A1F;
+    }
+    </style>
+    <div class="am-g xb-scorelist" style="height:cacl(100% - 89px)">
+        <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+            <div class="am-g" style="margin-top: 0px;">
+                <div class="am-u-sm-12">
+                    <ul class="am-list am-list-static am-list-border">
+                        <% for(var i=0 ; i<data.length ; i++){ %>
+                            <li>
+                                <span><%= data[i].examname %></span>
+                                <a href="<%= (data[i].status == 0) ? ('/examList/' + data[i].examid) : 'javascript:void(0);' %>" class="am-btn am-btn-success" <%= (data[i].status == 0) ? '' : 'disabled' %> >考试</a>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <style>
+    .xb-bottom .am-u-sm-12 {
+        height: 40px;
+    }
+
+    .xb-bottom .xb-bottom-img {
+        position: absolute;
+        left: 50%;
+        margin-left: -20%;
+        width: 40%;
+        bottom: 10px;
+        height: 30px;
+    }
+
+    .xb-bottom .xb-bottom-img img {
+        width: 100%;
+    }
+    </style>
+    <div class="xb-bottom am-g">
+        <div class="am-u-sm-12">
+            <div class="xb-bottom-img">
+                <!-- <img src="/images/font.jpg" alt=""> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="xb-bottom am-g">
+        <div class="xb-tab am-u-sm-6">
+            <a href="#">
+                <span class="xb-tab-icon"><i class="am-icon-wpforms am-icon-sm am-icon-fw"></i></span>
+                <span class="xb-tab-span">考试</span>
+            </a>
+        </div>
+        <div class="xb-tab am-u-sm-6">
+            <a href="/users">
+                <span class="xb-tab-icon"><i class="am-icon-user am-icon-sm am-icon-fw"></i></span>
+                <span class="xb-tab-span">个人中心</span>
+            </a>
+        </div>
+    </div> -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/amazeui/dist/js/amazeui.min.js"></script>
+</body>
+
+</html>
