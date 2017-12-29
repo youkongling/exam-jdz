@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
 
 router.post('/confirm', function(req, res, next) {
     var formBody = req.body;
-    // console.log(formBody);
+    console.log(formBody);
     request.post({ url: config.confirm, form: formBody }, function(error, response, body) {
         // console.log(body);
         var _body = JSON.parse(body);
