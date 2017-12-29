@@ -43,7 +43,7 @@ router.post('/confirm', function(req, res, next) {
                 res.cookie('userid', cookie.userid);
                 res.cookie('number', cookie.number);
                 res.cookie('name', cookie.name);
-                res.cookie('opneid', cookie.openid);
+                res.cookie('openid', cookie.openid);
                 res.redirect('/');
             } else {
                 res.cookie('openid', openid);
